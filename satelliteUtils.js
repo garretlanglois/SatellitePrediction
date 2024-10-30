@@ -1,16 +1,14 @@
-import { propagate, gstime, eciToGeodetic, degreesLat, degreesLong, EciVec3 } from 'satellite.js';
+import { propagate, gstime, eciToGeodetic, degreesLat, degreesLong } from 'satellite.js';
 
 export const findSatellitePassOverPosition = (
-    satrec: any, 
-    now: Date, 
-    targetPosition: [number, number], // lat and long
-    setPassTime: (passTime: Date | null) => void, // passover time to be set
-    tolerance: number = 0.5 // degrees tolerance 
+    satrec, 
+    now, 
+    targetPosition, // lat and long as an array of two numbers
+    setPassTime, // function to set passover time
+    tolerance = 0.5 // degrees tolerance
 ) => {
 
-    console.log(satrec);
-
-    let closestPassTime: Date | null = null;
+    let closestPassTime = null;
     let closestDistance = Number.MAX_VALUE;
 
     for (let i = 0; i < 1440; i++) { // loop over 24 hours
@@ -23,7 +21,7 @@ export const findSatellitePassOverPosition = (
             continue;
         }
 
-        const futurePositionEci = futurePositionAndVelocity.position as EciVec3<number>;
+        const futurePositionEci = futurePositionAndVelocity.position;
         const futurePositionGd = eciToGeodetic(futurePositionEci, futureGmst);
         const futureLatitude = degreesLat(futurePositionGd.latitude);
         const futureLongitude = degreesLong(futurePositionGd.longitude);
@@ -39,7 +37,7 @@ export const findSatellitePassOverPosition = (
         }
 
         if (distanceToTarget <= tolerance) { 
-            setPassTime(futureDate); // if we are within the tolerance set this as the passover time
+            setPassTime(futureDate); // if we are within the tolerance, set this as the passover time
             return;
         }
     }
