@@ -21,6 +21,6 @@ const setPassTime = (passTime) => {
     console.log("Pass Time: ", passTime);
 };
 
-findSatellitePassOverPosition(satrec, now, targetPosition, setPassTime, 1);
+findSatellitePassOverPosition(satrec, now, targetPosition, setPassTime, 1, 10);
 
 

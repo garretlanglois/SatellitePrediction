@@ -5,7 +5,8 @@ export const findSatellitePassOverPosition = (
     now, 
     targetPosition, // lat and long as an array of two numbers
     setPassTime, // function to set passover time
-    tolerance = 0.5 // degrees tolerance
+    tolerance = 0.5, // degrees tolerance
+    daysToProp = 1
 ) => {
 
     let closestPassTime = null;
