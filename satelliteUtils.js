@@ -11,7 +11,7 @@ export const findSatellitePassOverPosition = (
     let closestPassTime = null;
     let closestDistance = Number.MAX_VALUE;
 
-    for (let i = 0; i < 1440; i++) { // loop over 24 hours
+    for (let i = 0; i < 14400; i++) { // loop over 24 hours
         const futureDate = new Date(now.getTime() + i * 60000); // increment time by one minute
         const futureGmst = gstime(futureDate);
         const futurePositionAndVelocity = propagate(satrec, futureDate);

@@ -3,8 +3,8 @@ import { findSatellitePassOverPosition } from './satelliteUtils.js'; // Adjust t
 
 
 const ISS_TLE = [
-    '1 25544U 98067A   24303.66486354  .00043501  00000-0  74504-3 0  9990',
-    '2 25544  51.6404   9.2721 0008807 114.5857 343.1704 15.50747685479401'
+    '1 25994U 99068A   24306.85636306  .00002784  00000-0  58728-3 0  9997',
+    '2 25994  98.0321   6.2139 0001120 316.2502 167.4642 14.60170341323250'
   ];
 
 const tleLine1 = ISS_TLE[0];
@@ -21,6 +21,6 @@ const setPassTime = (passTime) => {
     console.log("Pass Time: ", passTime);
 };
 
-findSatellitePassOverPosition(satrec, now, targetPosition, setPassTime, 3);
+findSatellitePassOverPosition(satrec, now, targetPosition, setPassTime, 1);
 
 
